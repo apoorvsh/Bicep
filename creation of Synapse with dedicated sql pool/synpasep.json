@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "synapseName": {
+      "value": "apoorvsynapse"
+    },
+    "synapseTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdnszone"
+        }
+      }
+    },
+    "sqlAdministratorLogin": {
+      "value": "testuser"
+    },
+    "sqlAdministratorLoginPassword": {
+      "value": "Password@123"
+    },
+    "storageAccountUrl": {
+      "value": "https://apoorv3300.dfs.core.windows.net/"
+    },
+    "fileSystemName": {
+      "value": "data"
+    },
+    "dedicatedSqlPoolName": {
+      "value": "apoorvdedicatedsqlpool"
+    },
+    "sqlPoolTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdedicatedsqlPool"
+        }
+      }
+    },
+    "sqlPoolCapacity": {
+      "value": 100
+    },
+    "sqlPoolName": {
+      "value": "DW100c"
+    },
+    "sqlTier": {
+      "value": "DW100c"
+    }
+  }
+}

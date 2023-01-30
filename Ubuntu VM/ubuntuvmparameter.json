@@ -1,0 +1,134 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "VNETA"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "vnetAddress": {
+      "value": "10.5.0.0/16"
+    },
+    "subnetName": {
+      "value": "SubnetA"
+    },
+    "subnetAddress": {
+      "value": "10.5.1.0/24"
+    },
+    "nicName": {
+      "value": "NIC1"
+    },
+    "ubuntuNicTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgNIC"
+        }
+      }
+    },
+    "nsgName": {
+      "value": "UbuntuNSG"
+    },
+    "ubuntuNsgTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgNSG"
+        }
+      }
+    },
+    "publicIpName": {
+      "value": "UbuntuPublicIP"
+    },
+    "ubuntupublicIpTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgPublicIP"
+        }
+      }
+    },
+    "publicIpAllocationMethod": {
+      "value": "Dynamic"
+    },
+    "ubuntuVmName": {
+      "value": "UbuntuVM"
+    },
+    "ubuntuVmTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgUbuntuVM"
+        }
+      }
+    },
+    "ubuntuVmSize": {
+      "value": "Standard_B2s"
+    },
+    "osProfileComputerName": {
+      "value": "UbuntuVM1"
+    },
+    "ubuntuAdminUserName": {
+      "value": "testuser"
+    },
+    "ubuntuAdminPassword": {
+      "value": "Password@123"
+    },
+    "nsgRuleName": {
+      "value": "SSH"
+    },
+    "nsgProtocol": {
+      "value": "TCP"
+    },
+    "nsgSourcePortRange": {
+      "value": "*"
+    },
+    "nsgDestinationPortRange": {
+      "value": "22"
+    },
+    "nsgsourceAddressPrefix": {
+      "value": "*"
+    },
+    "nsgDestinationAddressPrefix": {
+      "value": "*"
+    },
+    "nsgAccess": {
+      "value": "Deny"
+    },
+    "nsgPriority": {
+      "value": 500
+    },
+    "nsgDirection": {
+      "value": "Inbound"
+    },
+    "storageProfilePublisher": {
+      "value": "Canonical"
+    },
+    "storageProfileOffer": {
+      "value": "UbuntuServer"
+    },
+    "storageProfileSku": {
+      "value": "16.04-LTS"
+    },
+    "storageProfileVersion": {
+      "value": "latest"
+    },
+    "osDiskName": {
+      "value": "UbuntuVM1Disk"
+    },
+    "osDiskCaching": {
+      "value": "ReadWrite"
+    },
+    "osDiskCreateOption": {
+      "value": "FromImage"
+    },
+    "privateIPAllocationMethod": {
+      "value": "Dynamic"
+    },
+    "ipConfigName": {
+      "value": "windowipconfig"
+    }
+  }
+}

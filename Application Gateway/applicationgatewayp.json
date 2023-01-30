@@ -1,0 +1,99 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "vnetB"
+    },
+    "vnetAddress": {
+      "value": "10.7.0.0/16"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "subnetName": {
+      "value": "subnetB"
+    },
+    "subnetAddress": {
+      "value": "10.7.1.0/24"
+    },
+    "applicationGatewayName": {
+      "value": "Gateway1"
+    },
+    "applicationGatewayTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgapplicationGateway"
+        }
+      }
+    },
+    "applicationGatewaySkuName": {
+      "value": "Standard_v2"
+    },
+    "applicationGatewaySkuTier": {
+      "value": "Standard_v2"
+    },
+    "applicationGatewaySkuCapacity": {
+      "value": 2
+    },
+    "gatewayIpConfigurationsName": {
+      "value": "gatewayipconfig"
+    },
+    "frontendIpConfigurationsName": {
+      "value": "Ipconfig"
+    },
+    "publicIpName": {
+      "value": "applicationgatewaypubip"
+    },
+    "pulicIpTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgpublicIP"
+        }
+      }
+    },
+    "publicIpSkuName": {
+      "value": "Standard"
+    },
+    "publicIpSkuTier": {
+      "value": "Regional"
+    },
+    "publicIpAllocationMethod": {
+      "value": "Static"
+    },
+    "frontendPortName": {
+      "value": "HTTP"
+    },
+    "frontendPortPort": {
+      "value": 80
+    },
+    "backendHttpSettingsCollectionName": {
+      "value": "HTTP"
+    },
+    "backendHttpSettingsCollectionPort": {
+      "value": 80
+    },
+    "backendHttpSettingsCollectionProtocol": {
+      "value": "HTTP"
+    },
+    "cookieBasedAffinity": {
+      "value": "Disabled"
+    },
+    "httpListenersName": {
+      "value": "httpListener1"
+    },
+    "httpListenersProtocol": {
+      "value": "HTTP"
+    },
+    "requestRoutingRulesName": {
+      "value": "rule1"
+    },
+    "requestRoutingRulesRuleType": {
+      "value": "Basic"
+    }
+  }
+}

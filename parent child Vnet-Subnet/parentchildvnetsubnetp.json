@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "VNETD"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "vnetAddress": {
+      "value": "10.6.0.0/16"
+    },
+    "subnetName": {
+      "value": "SubetA"
+    },
+    "subnetAddress": {
+      "value": "10.6.1.0/24"
+    },
+    "subnetName1": {
+      "value": "SubnetB"
+    },
+    "subnetAddress1": {
+      "value": "10.6.2.0/24"
+    }
+  }
+}

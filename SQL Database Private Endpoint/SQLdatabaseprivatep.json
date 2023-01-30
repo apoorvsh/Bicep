@@ -1,0 +1,95 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "VnetA"
+    },
+    "vnettagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "vnetAddress": {
+      "value": "10.4.0.0/16"
+    },
+    "subnetName": {
+      "value": "subnetA"
+    },
+    "subnetAddress": {
+      "value": "10.4.1.0/24"
+    },
+    "sqlServerName": {
+      "value": "apoorvdbserver"
+    },
+    "sqlServertagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgSqlServer"
+        }
+      }
+    },
+    "administratorLogin": {
+      "value": "testuser"
+    },
+    "administratorLoginPassword": {
+      "value": "Password@123"
+    },
+    "sqlServerDatabaseName": {
+      "value": "apoorvdb"
+    },
+    "sqlServerDatabasetagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgSqlServerDatabase"
+        }
+      }
+    },
+    "collation": {
+      "value": "SQL_Latin1_General_CP1_CI_AS"
+    },
+    "edition": {
+      "value": "GeneralPurpose"
+    },
+    "requestedServiceObjectiveName": {
+      "value": "GeneralPurpose"
+    },
+    "SQlServerPrivate": {
+      "value": "SQlserverPrivate"
+    },
+    "privateEndpointtagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgprivateEndpoint"
+        }
+      }
+    },
+    "privateLinkServiceConnectionsName": {
+      "value": "sqlserverprivateconnection"
+    },
+    "groupID": {
+      "value": "sqlServer"
+    },
+    "dnsZoneName": {
+      "value": "privatelink.database.windows.net"
+    },
+    "location": {
+      "value": "Global"
+    },
+    "dnszonetagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdnsZone"
+        }
+      }
+    },
+    "registrationEnabled": {
+      "value": false
+    },
+    "privateDnsZoneConfigsName": {
+      "value": "dnszoneconfig"
+    }
+  }
+}

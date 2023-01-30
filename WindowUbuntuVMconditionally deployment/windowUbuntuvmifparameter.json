@@ -1,0 +1,243 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "VnetA"
+    },
+    "vnetAddress": {
+      "value": "10.2.0.0/16"
+    },
+    "subnetNameA": {
+      "value": "WindowSubnet"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "subnetAddressA": {
+      "value": "10.2.1.0/24"
+    },
+    "subnetNameB": {
+      "value": "UbuntuSubnet"
+    },
+    "subnetAddressB": {
+      "value": "10.2.2.0/24"
+    },
+    "windowNicName": {
+      "value": "WindowNIC"
+    },
+    "windowNicTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgNicWindow"
+        }
+      }
+    },
+    "windowIpConfigurationsName": {
+      "value": "WindowIPconfig"
+    },
+    "windowPrivateIpAllocationMethod": {
+      "value": "Dynamic"
+    },
+    "ubuntuNicName": {
+      "value": "UbuntuNIC"
+    },
+    "ubuntuNicTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgNicUbuntu"
+        }
+      }
+    },
+    "ubuntuIpConfigurationsName": {
+      "value": "UbuntuIPconfig"
+    },
+    "ubuntuPrivateIpAllocationMethod": {
+      "value": "Dynamic"
+    },
+    "windowNsgName": {
+      "value": "WindowNSG"
+    },
+    "windowNsgTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgnsgWindow"
+        }
+      }
+    },
+    "windowNsgRuleName": {
+      "value": "RDP"
+    },
+    "windowNsgDiscription": {
+      "value": "discription"
+    },
+    "windowNsgProtocol": {
+      "value": "TCP"
+    },
+    "windowNsgSourcePortRange": {
+      "value": "*"
+    },
+    "windowNsgDestinationPortRange": {
+      "value": "3389"
+    },
+    "windowNsgSourceAddressPrefix": {
+      "value": "*"
+    },
+    "windowNsgDestinationAddressPrefix": {
+      "value": "*"
+    },
+    "windowNsgAccess": {
+      "value": "Allow"
+    },
+    "windowNsgPriority": {
+      "value": 500
+    },
+    "windowNsgdirection": {
+      "value": "Inbound"
+    },
+    "ubuntuNsgName": {
+      "value": "UbuntuNSG"
+    },
+    "ubuntuNsgTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgnsgUbuntu"
+        }
+      }
+    },
+    "ubuntuNsgRuleName": {
+      "value": "HTTPS"
+    },
+    "ubuntuNsgDiscription": {
+      "value": "discription"
+    },
+    "ubuntuNsgProtocol": {
+      "value": "TCP"
+    },
+    "ubuntuNsgSourcePortRange": {
+      "value": "*"
+    },
+    "ubuntuNsgDestinationPortRange": {
+      "value": "443"
+    },
+    "ubuntuNsgSourceAddressPrefix": {
+      "value": "*"
+    },
+    "ubuntuNsgDestinationAddressPrefix": {
+      "value": "*"
+    },
+    "ubuntuNsgAccess": {
+      "value": "Deny"
+    },
+    "ubuntuNsgPriority": {
+      "value": 600
+    },
+    "ubuntuNsgDirection": {
+      "value": "Outbound"
+    },
+    "windowPublicIpName": {
+      "value": "WindowPubIP"
+    },
+    "windowPublicIpTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgpublicipWindow"
+        }
+      }
+    },
+    "windowPublicIpAllocationMethod": {
+      "value": "Dynamic"
+    },
+    "ubuntuPublicIpName": {
+      "value": "UbuntuPubIP"
+    },
+    "ubuntuPublicIpTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgpublicipUbuntu"
+        }
+      }
+    },
+    "ubuntuPublicIpAllocationMethod": {
+      "value": "Dynamic"
+    },
+    "windowVmName": {
+      "value": "WindowVM"
+    },
+    "windowVmTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubgWindowvm"
+        }
+      }
+    },
+    "windowVmSize": {
+      "value": "Standard_B2s"
+    },
+    "windowPublisher": {
+      "value": "MicrosoftWindowsServer"
+    },
+    "windowStorageProfileOffer": {
+      "value": "WindowsServer"
+    },
+    "windowStorageProfileSku": {
+      "value": "2012-R2-Datacenter"
+    },
+    "windowStorageProfileVersion": {
+      "value": "latest"
+    },
+    "windowOsDiskName": {
+      "value": "WindowosDisk"
+    },
+    "windowOsDiskCaching": {
+      "value": "ReadWrite"
+    },
+    "windowOsDiskCreateOption": {
+      "value": "FromImage"
+    },
+    "ubuntuVmName": {
+      "value": "UbuntuVM"
+    },
+    "ubuntuVmTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgUbuntuVM"
+        }
+      }
+    },
+    "ubuntuVmSize": {
+      "value": "Standard_B2s"
+    },
+    "ubuntuPublisher": {
+      "value": "Canonical"
+    },
+    "ubuntuStorageProfileOffer": {
+      "value": "UbuntuServer"
+    },
+    "ubuntuStorageProfileSku": {
+      "value": "16.04-LTS"
+    },
+    "ubuntuStorageProfileVersion": {
+      "value": "latest"
+    },
+    "ubuntuOsDiskName": {
+      "value": "UbuntuosDisk"
+    },
+    "ubuntuOsDiskCaching": {
+      "value": "ReadWrite"
+    },
+    "ubuntuOsDiskCreateOption": {
+      "value": "FromImage"
+    },
+    "windowSubnet": {
+      "value": "WindowSubnet"
+    },
+    "ubuntuSubnet": {
+      "value": "UbuntuSubnet"
+    }
+  }
+}

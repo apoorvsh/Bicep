@@ -1,0 +1,82 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "VNetA"
+    },
+    "vnetAddress": {
+      "value": "10.6.0.0/16"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "subnetName": {
+      "value": "SubnetA"
+    },
+    "subnetAddress": {
+      "value": "10.6.1.0/24"
+    },
+    "synapseName": {
+      "value": "apoorvsynapse"
+    },
+    "synapseTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgsynapse"
+        }
+      }
+    },
+    "sqlAdministratorLogin": {
+      "value": "testuser"
+    },
+    "sqlAdministratorLoginPassword": {
+      "value": "Password@123"
+    },
+    "storageAccountUrl": {
+      "value": "https://apoorv3300.dfs.core.windows.net/"
+    },
+    "fileSystemName": {
+      "value": "data"
+    },
+    "privateEndpointName": {
+      "value": "synapseprivate"
+    },
+    "privateEndpointTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgPrivateEndpoint"
+        }
+      }
+    },
+    "privateLinkServiceConnectionsName": {
+      "value": "synapseprivateLinkService"
+    },
+    "dnsZoneName": {
+      "value": "privatelink.dev.azuresynapse.net"
+    },
+    "dnsZoneTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdnsZone"
+        }
+      }
+    },
+    "dnsZoneLocation": {
+      "value": "Global"
+    },
+    "vnetLinkLocation": {
+      "value": "Global"
+    },
+    "registrationEnabled": {
+      "value": false
+    },
+    "synapsePrivateDnsZoneConfig": {
+      "value": "privatesynapsednsconfig"
+    }
+  }
+}

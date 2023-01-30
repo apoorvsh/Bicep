@@ -1,0 +1,77 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "vnetA"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "vnetAddress": {
+      "value": "10.4.0.0/16"
+    },
+    "subnetName": {
+      "value": "subnetA"
+    },
+    "subnetAddress": {
+      "value": "10.4.1.0/24"
+    },
+    "inernalLoadBalancerName": {
+      "value": "Internalloadbalacer"
+    },
+    "internalLoadBalancerTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgloadbalancer"
+        }
+      }
+    },
+    "frontendIpConfigurationsName": {
+      "value": "internalPrivateIP"
+    },
+    "privateIpAllocationMethod": {
+      "value": "Static"
+    },
+    "loadBalancingRulesName": {
+      "value": "Rule1"
+    },
+    "loadBalancingRulesProtocol": {
+      "value": "TCP"
+    },
+    "loadBalancingRulesFrontendPort": {
+      "value": 80
+    },
+    "loadBalancingRulesBackendPort": {
+      "value": 80
+    },
+    "enableFloatingIp": {
+      "value": false
+    },
+    "idleTimeoutInMinutes": {
+      "value": 5
+    },
+    "probeName": {
+      "value": "proberule1"
+    },
+    "probeProtocol": {
+      "value": "TCP"
+    },
+    "probePort": {
+      "value": 80
+    },
+    "intervalInSeconds": {
+      "value": 5
+    },
+    "numberOfProbes": {
+      "value": 2
+    },
+    "lbSku": {
+      "value": "Basic"
+    }
+  }
+}

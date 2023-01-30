@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subnetNameA": {
+      "value": "subnetA"
+    },
+    "vnetName": {
+      "value": "vnetD"
+    },
+    "subnetaddressPrefixA": {
+      "value": "10.9.1.0/24"
+    },
+    "subnetNameB": {
+      "value": "subnetB"
+    },
+    "subnetaddressPrefixB": {
+      "value": "10.9.2.0/24"
+    },
+    "moduleNameSubnetA": {
+      "value": "subnetAmodule"
+    },
+    "moduleNameSubnetB": {
+      "value": "subnetBmodule"
+    }
+  }
+}

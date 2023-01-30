@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "VNetA"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "vnetAddress": {
+      "value": "10.6.0.0/16"
+    },
+    "subnetName": {
+      "value": "SubnetA"
+    },
+    "subnetAddress": {
+      "value": "10.6.1.0/24"
+    },
+    "keyVaultName": {
+      "value": "apoorvkeyvault"
+    },
+    "keyVaultTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgkeyvault"
+        }
+      }
+    },
+    "privateEndpointTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgprivateEndpoint"
+        }
+      }
+    },
+    "keyVaultSku": {
+      "value": "standard"
+    },
+    "secretsName": {
+      "value": "password"
+    },
+    "secretsValues": {
+      "value": "123456789"
+    },
+    "keyVaultPrivateName": {
+      "value": "privatekeyvault"
+    },
+    "dnsZoneTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdnszone"
+        }
+      }
+    },
+    "privateLinkServiceConnectionsName": {
+      "value": "keyprivatelink"
+    },
+    "dnslocation": {
+      "value": "Global"
+    },
+    "dnsZoneName": {
+      "value": "privatelink.vaultcore.azure.net"
+    },
+    "registrationEnabled": {
+      "value": false
+    },
+    "privateDnsZoneConfigsName": {
+      "value": "keyprivatednszoneconfig"
+    },
+    "keyVaultFamily": {
+      "value": "A"
+    }
+  }
+}

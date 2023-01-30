@@ -1,0 +1,134 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "VNETA"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "vnetAddress": {
+      "value": "10.5.0.0/16"
+    },
+    "subnetName": {
+      "value": "SubnetA"
+    },
+    "subnetAddress": {
+      "value": "10.5.1.0/24"
+    },
+    "nicName": {
+      "value": "NIC1"
+    },
+    "windowNicTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgWindownic"
+        }
+      }
+    },
+    "nsgName": {
+      "value": "WindowNSG"
+    },
+    "windowNsgTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgnsg"
+        }
+      }
+    },
+    "publicIpName": {
+      "value": "WindowPublicIP"
+    },
+    "windowPulicIpTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgpublicipwindow"
+        }
+      }
+    },
+    "publicIpAllocationMethod": {
+      "value": "Dynamic"
+    },
+    "windowVmName": {
+      "value": "WindowVM"
+    },
+    "windowVmTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgWindowvm"
+        }
+      }
+    },
+    "windowVmSize": {
+      "value": "Standard_B2s"
+    },
+    "osProfileComputerName": {
+      "value": "VM1"
+    },
+    "windowAdminUserName": {
+      "value": "testuser"
+    },
+    "windowAdminPassword": {
+      "value": "Password@123"
+    },
+    "nsgRuleName": {
+      "value": "RDP"
+    },
+    "nsgProtocol": {
+      "value": "TCP"
+    },
+    "nsgSourcePortRange": {
+      "value": "*"
+    },
+    "nsgDestinationPortRange": {
+      "value": "3389"
+    },
+    "nsgSourceAddressPrefix": {
+      "value": "*"
+    },
+    "nsgDestinationAddressPrefix": {
+      "value": "*"
+    },
+    "nsgAccess": {
+      "value": "Allow"
+    },
+    "nsgPriority": {
+      "value": 400
+    },
+    "nsgDirection": {
+      "value": "Inbound"
+    },
+    "storageProfilePublisher": {
+      "value": "MicrosoftSQLServer"
+    },
+    "storageProfileImageOffer": {
+      "value": "SQL2017-WS2016"
+    },
+    "storageProfileSqlSku": {
+      "value": "Standard"
+    },
+    "storageProfileVersion": {
+      "value": "latest"
+    },
+    "osDiskName": {
+      "value": "WindoeVM1Disk"
+    },
+    "osDiskCaching": {
+      "value": "ReadWrite"
+    },
+    "osDiskCreateOption": {
+      "value": "FromImage"
+    },
+    "privateIPAllocationMethod": {
+      "value": "Dynamic"
+    },
+    "ipConfigName": {
+      "value": "windowipconfig"
+    }
+  }
+}

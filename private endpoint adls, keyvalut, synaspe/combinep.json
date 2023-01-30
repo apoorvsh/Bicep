@@ -1,0 +1,384 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "vnetA"
+    },
+    "vnetAddress": {
+      "value": "10.6.0.0/16"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "subnetName": {
+      "value": "subnetA"
+    },
+    "subnetAddress": {
+      "value": "10.6.1.0/24"
+    },
+    "keyVaultName": {
+      "value": "apoorvkey12345"
+    },
+    "keyVaultTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgkeyvault"
+        }
+      }
+    },
+    "enabledForDeployment": {
+      "value": true
+    },
+    "enabledForTemplateDeployment": {
+      "value": true
+    },
+    "enabledForDiskEncryption": {
+      "value": true
+    },
+    "objectId": {
+      "value": "d850e333-ff3b-4f51-b6b0-c7a00eb24e2a"
+    },
+    "keysPermission": {
+      "value": "all"
+    },
+    "secretsPermission": {
+      "value": "all"
+    },
+    "keyVaultSkuName": {
+      "value": "Standard"
+    },
+    "keyVaultSkuFamily": {
+      "value": "A"
+    },
+    "keyVaultNameA": {
+      "value": "sqladminusername"
+    },
+    "sqlAdminUserName": {
+      "value": "testuser"
+    },
+    "keyVaultNameB": {
+      "value": "sqlpassword"
+    },
+    "sqlPassword": {
+      "value": "Password@123"
+    },
+    "keyVaultPrivateEndpointName": {
+      "value": "keyvaultprivate"
+    },
+    "keyVaultPrivateEndpointTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgkeyprivateendpoint"
+        }
+      }
+    },
+    "keyVaultPrivateLinkServiceConnectionsName": {
+      "value": "keyvaultlinkservice"
+    },
+    "keyVaultGroupId": {
+      "value": "vault"
+    },
+    "keyVaultDnsZoneName": {
+      "value": "privatelink.vaultcore.azure.net"
+    },
+    "keyVaultDnsZoneLocation": {
+      "value": "Global"
+    },
+    "keyVaultDnsZoneTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdnszone"
+        }
+      }
+    },
+    "keyVaultVnetLinkLocation": {
+      "value": "Global"
+    },
+    "keyVaultRegistrationEnabled": {
+      "value": false
+    },
+    "keyVaultPrivateDnsZoneConfigs": {
+      "value": "keyvaultdnszoneconfig"
+    },
+    "storageName": {
+      "value": "apoorv3300"
+    },
+    "storageAccountTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgstorageaccount"
+        }
+      }
+    },
+    "storageKind": {
+      "value": "StorageV2"
+    },
+    "storageSku": {
+      "value": "Standard_LRS"
+    },
+    "storageAccessTier": {
+      "value": "Hot"
+    },
+    "allowBlobPublicAccess": {
+      "value": false
+    },
+    "allowSharedKeyAccess": {
+      "value": true
+    },
+    "ishnsEnabled": {
+      "value": true
+    },
+    "blobEnabled": {
+      "value": true
+    },
+    "fileEnabled": {
+      "value": true
+    },
+    "queueEnabled": {
+      "value": true
+    },
+    "tableEnabled": {
+      "value": true
+    },
+    "storageAccountPrivateEndpointName": {
+      "value": "storageAccountprivate"
+    },
+    "storageAccountPrivateEndpointTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgstorageprivateendpoint"
+        }
+      }
+    },
+    "storageAccountPrivateLinkServiceConnectionsName": {
+      "value": "storageAccountlinkservice"
+    },
+    "storageAccountGroupId": {
+      "value": "dfs"
+    },
+    "storageAccountDnsZoneName": {
+      "value": "privatelink.dfs.core.windows.net"
+    },
+    "storageAccountDnsZoneLocation": {
+      "value": "Global"
+    },
+    "storageAccountDnsZoneTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdnszone"
+        }
+      }
+    },
+    "storageAccountVnetLinkLocation": {
+      "value": "Global"
+    },
+    "storageAccountRegistrationEnabled": {
+      "value": false
+    },
+    "storageAcccountPrivateDnsZoneConfigs": {
+      "value": "storageAccountdnszoneconfig"
+    },
+    "synapseName": {
+      "value": "synapse3300"
+    },
+    "synapseTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgsynapse"
+        }
+      }
+    },
+    "storageAccountUrl": {
+      "value": "https://abcd3300.dfs.core.windows.net/"
+    },
+    "fileSystemName": {
+      "value": "data"
+    },
+
+    "synapsePrivateEndpointName": {
+      "value": "synapsetprivate"
+    },
+    "synapsePrivateEndpointTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgsynapseprivateendpoint"
+        }
+      }
+    },
+    "synapsePrivateLinkServiceConnectionsName": {
+      "value": "synapseAccountlinkservice"
+    },
+    "synapseGroupId": {
+      "value": "dev"
+    },
+    "synapseDnsZoneName": {
+      "value": "privatelink.dev.azuresynapse.net"
+    },
+    "synapseDnsZoneLocation": {
+      "value": "Global"
+    },
+    "synapseDnsZoneTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdnszone"
+        }
+      }
+    },
+    "synapseVnetLinkLocation": {
+      "value": "Global"
+    },
+    "synapseRegistrationEnabled": {
+      "value": false
+    },
+    "synapsePrivateDnsZoneConfigs": {
+      "value": "synapsednszoneconfig"
+    },
+    "synapsePrivateLinkHubName": {
+      "value": "synapseprivatelinkhub"
+    },
+    "synapsePrivateLinkHubTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgPrivateLinkHub"
+        }
+      }
+    },
+    "synapsePrivateLinkHubEndpointName": {
+      "value": "synapsePrivateLinkHubPrivate"
+    },
+    "synapsePrivateLinkHubEndpointTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgsynapseprivateLinkhubEndpoint"
+        }
+      }
+    },
+    "synapsePrivateLinkHubPrivateLinkServiceConnectionsName": {
+      "value": "PrivateLinkhublinkservice"
+    },
+    "synapsePrivateLinkHubGroupId": {
+      "value": "web"
+    },
+    "synapsePrivateLinkHubDnsZoneName": {
+      "value": "privatelink.azuresynapse.net"
+    },
+    "synapsePrivateLinkHubDnsZoneLocation": {
+      "value": "Global"
+    },
+    "synapsePrivateLinkHubDnsZoneTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgPrivateLinkHubdnszone"
+        }
+      }
+    },
+    "synapsePrivateLinkHubVnetLinkLocation": {
+      "value": "Global"
+    },
+    "synapsePrivateLinkHubRegistrationEnabled": {
+      "value": false
+    },
+    "synapsePrivateLinkHubPrivateDnsZoneConfigs": {
+      "value": "privateLinkHubdnszoneconfig"
+    },
+    "dedicatedSqlPoolName": {
+      "value": "apoorvsqlpool"
+    },
+    "dedicatedSqlPoolTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdedicatedsqlpool"
+        }
+      }
+    },
+    "dedicatedSqlPoolSkuCapacity": {
+      "value": 100
+    },
+    "dedicatedSqlPoolSkuName": {
+      "value": "DW100c"
+    },
+    "dedicatedSqlPoolSkuTier": {
+      "value": "DW100c"
+    },
+    "dedicatedSqlPoolPrivateEndpointName": {
+      "value": "dedicatedSqlPoolPrivate"
+    },
+    "dedicatedSqlPoolPrivateEndpointTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgsynapseprivateLinkhubEndpoint"
+        }
+      }
+    },
+    "dedicatedSqlPoolPrivateLinkServiceConnectionsName": {
+      "value": "PrivateLinkhublinkservice"
+    },
+    "dedicatedSqlPoolGroupId": {
+      "value": "sql"
+    },
+    "dedicatedSqlPoolDnsZoneName": {
+      "value": "privatelink.sql.azuresynapse.net"
+    },
+    "dedicatedSqlPoolDnsZoneLocation": {
+      "value": "Global"
+    },
+    "dedicatedSqlPoolDnsZoneTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdedicatedSqlPooldnszone"
+        }
+      }
+    },
+    "dedicatedSqlPoolVnetLinkLocation": {
+      "value": "Global"
+    },
+    "dedicatedSqlPoolRegistrationEnabled": {
+      "value": false
+    },
+    "dedicatedSqlPoolPrivateDnsZoneConfigs": {
+      "value": "dedicatedSqlPooldnszoneconfig"
+    },
+    "apacheSparkPoolName": {
+      "value": "ap3300sparkPool"
+    },
+    "apacheSparkPoolTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgapachesparkpool"
+        }
+      }
+    },
+    "sparkNodeSize": {
+      "value": "small"
+    },
+    "sparkPoolNodeSizeFamily": {
+      "value": "MemoryOptimized"
+    },
+    "sparkPoolDelayInMinutes": {
+      "value": 10
+    },
+    "sparkPoolAutoPauseEnable": {
+      "value": true
+    },
+    "sparkPoolAutoScaleEnable": {
+      "value": true
+    },
+    "sparkPoolMaxNodeCount": {
+      "value": 10
+    },
+    "sparkPoolMinNodeCount": {
+      "value": 3
+    },
+    "saprkPoolDynamicExecutorAllocation": {
+      "value": false
+    },
+    "sparkVersion": {
+      "value": "3.2"
+    }
+  }
+}

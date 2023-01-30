@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "VNETC"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "vnetAddressSpace": {
+      "value": "10.1.0.0/16"
+    },
+    "subnets": {
+      "value": {
+        "Subnet1": {
+          "SubnetName": "SubnetA",
+          "SubnetAddress": "10.1.1.0/24"
+        },
+        "Subnet2": {
+          "SubnetName": "SubnetB",
+          "SubnetAddress": "10.1.2.0/24"
+        }
+      }
+    },
+    "nsgName": {
+      "value": "NSG1"
+    },
+    "nsgTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgnsg"
+        }
+      }
+    },
+    "nsgRuleName": {
+      "value": "HTTPS"
+    },
+    "nsgProtocol": {
+      "value": "TCP"
+    },
+    "nsgSourcePortRange": {
+      "value": "*"
+    },
+    "nsgDestinationPortRange": {
+      "value": "443"
+    },
+    "nsgSourceAddressPrefix": {
+      "value": "*"
+    },
+    "nsgDestinationAddressPrefix": {
+      "value": "*"
+    },
+    "nsgAccess": {
+      "value": "Deny"
+    },
+    "nsgPriority": {
+      "value": 600
+    },
+    "nsgDirection": {
+      "value": "Outbound"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "keyVaultName": {
+      "value": "apoorv3344keyVault"
+    },
+    "keyVaultTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgkeyvault"
+        }
+      }
+    },
+    "enabledForDeployment": {
+      "value": true
+    },
+    "enabledForTemplateDeployment": {
+      "value": true
+    },
+    "enabledForDiskEncryption": {
+      "value": true
+    },
+    "enableRbacAuthorization": {
+      "value": false
+    },
+    "objectId": {
+      "value": "d850e333-ff3b-4f51-b6b0-c7a00eb24e2a"
+    },
+    "keysPermission": {
+      "value": "all"
+    },
+    "secretsPermission": {
+      "value": "all"
+    },
+    "skuName": {
+      "value": "standard"
+    },
+    "skuFamily": {
+      "value": "A"
+    },
+    "keyVaultNameA": {
+      "value": "VmUserName"
+    },
+    "userName": {
+      "value": "testuser"
+    },
+    "keyVaultNameB": {
+      "value": "VmPassword"
+    },
+    "password": {
+      "value": "Password@123"
+    }
+  }
+}
