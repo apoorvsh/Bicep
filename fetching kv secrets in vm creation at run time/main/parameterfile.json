@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+        "value": "eastus"
+    },
+    "projectCode": {
+      "value": "Datalake"
+    },
+    "environment": {
+      "value": "Uat"
+    },
+    "combineResourceTags": {
+        "value": {
+            "Environment": "uat",
+            "Project Code":"Datalake",
+            "Owner": "Celebal-Singpost",
+            "Managed By": "Bicep"
+        }
+    },
+    "vmUserName": { 
+      "value": "testuser"
+    },
+    "adminPassword" : {
+      "value": "Password@123"
+    }
+}
+}
