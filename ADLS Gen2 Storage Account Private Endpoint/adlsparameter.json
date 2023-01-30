@@ -1,0 +1,100 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "VnetB"
+    },
+    "vnetTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgvnet"
+        }
+      }
+    },
+    "VnetAddress": {
+      "value": "10.4.0.0/16"
+    },
+    "subnetName": {
+      "value": "SubnetA"
+    },
+    "subnetAddress": {
+      "value": "10.4.1.0/24"
+    },
+    "storageName": {
+      "value": "apoorv3300"
+    },
+    "storageAccountTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgstorageaccount"
+        }
+      }
+    },
+    "kind": {
+      "value": "StorageV2"
+    },
+    "sku": {
+      "value": "Standard_LRS"
+    },
+    "accessTier": {
+      "value": "Hot"
+    },
+    "allowBlobPublicAccess": {
+      "value": true
+    },
+    "allowSharedKeyAccess": {
+      "value": true
+    },
+    "blobEnabled": {
+      "value": true
+    },
+    "fileEnabled": {
+      "value": true
+    },
+    "queueEnabled": {
+      "value": true
+    },
+    "tableEnabled": {
+      "value": true
+    },
+    "storagePrivate": {
+      "value": "PrivatestorageAccount"
+    },
+    "privateEndpointTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgprivateEndpoint"
+        }
+      }
+    },
+    "privateLinkServiceConnectionsName": {
+      "value": "Privatestorage"
+    },
+    "dnsZoneName": {
+      "value": "privatelink.dfs.core.windows.net"
+    },
+    "dnsZoneTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgdnszone"
+        }
+      }
+    },
+    "location": {
+      "value": "global"
+    },
+    "registrationEnabled": {
+      "value": false
+    },
+    "privateDnsZoneConfigsName": {
+      "value": "privateDnsZoneConfigsName"
+    },
+    "dfsGroupID": {
+      "value": "dfs"
+    },
+    "hnsEnabled": {
+      "value": true
+    }
+  }
+}

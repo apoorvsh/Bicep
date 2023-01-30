@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "synapseName": {
+      "value": "aporv3300synapse"
+    },
+    "synapseTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgsynapse"
+        }
+      }
+    },
+    "storageAccountUrl": {
+      "value": "https://abcd3300.dfs.core.windows.net/"
+    },
+    "fileSystemName": {
+      "value": "data"
+    },
+    "sqlAdministratorLogin": {
+      "value": "testuser"
+    },
+    "sqlAdministratorLoginPassword": {
+      "value": "Password@123"
+    },
+    "apacheSparkPoolName": {
+      "value": "ap3300sparkPool"
+    },
+    "apacheSparkPoolTagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgapachesparkpool"
+        }
+      }
+    },
+    "sparkNodeSize": {
+      "value": "small"
+    },
+    "sparkPoolNodeSizeFamily": {
+      "value": "MemoryOptimized"
+    },
+    "sparkPoolDelayInMinutes": {
+      "value": 10
+    },
+    "sparkPoolAutoPauseEnable": {
+      "value": true
+    },
+    "sparkPoolAutoScaleEnable": {
+      "value": true
+    },
+    "sparkPoolMaxNodeCount": {
+      "value": 10
+    },
+    "sparkPoolMinNodeCount": {
+      "value": 3
+    },
+    "saprkPoolDynamicExecutorAllocation": {
+      "value": false
+    }
+  }
+}
