@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "values": {
+      "value": {
+         "rgNames": "keyVaultRG",
+         "vnetModuleName": "vnetModule",
+         "vnetName": "vnet",
+         "addressprefix": "10.0.0.0/16",
+         "vaultModuleName": "keyVaultModule",
+         "subnetName": "subnet",
+         "subnetPrefix": "10.0.0.0/18",
+         "workSpaceName": "vaultWorkspace42",
+         "diagnoName": "vaultDiagno",
+         "firewallIPModuleName": "firewallIPModule",
+         "azurepublicIpname": "fpublicIP",
+         "firewallModuleName": "firewallModule",
+         "firewallName": "vaultFirewall",
+         "firwallIPConfig": "firewallIPConfig",
+         "keyVaultName": "newHemang8288",
+         "location": "eastus",
+          "enabledForDeployment" :true,
+          "enabledForDiskEncryption" :false,
+          "enabledForTemplateDeployment" :true,
+          "enableRbacAuthorization" :false,
+          "enableSoftDelete" :true,
+          "objectID" :"3e98f5f4-3e7a-48bc-86cd-ac615efa40ce",
+          "enablePublicAccess" :"Enabled",
+          "disablePublicAccess": "Disabled",
+          "softDeleteRetentionInDays": 90,
+          "secrets": [
+            "Get", 
+            "List", 
+            "Set" ,
+            "Delete",
+            "Recover", 
+            "Backup",
+            "Restore"
+          ],
+          "endpointModule": "endpointModule",
+          "privateEndpointName": "vaultEndpoint",
+          "privateEndpointLinkName": "endpointVaultLink",
+          "groupID": "vault",
+          "adminModuleName": "adminRoleModule",
+          "contributorModuleName": "contributorRoleModule",
+          "nicName": "hemangNic",
+          "dnsGroupName": "dnsGroup",
+          "dnsModulename": "dnsModule",
+          "privateDNSZoneName": "privatelink.vaultcore.azure.net",
+          "dnsZoneLinkName": "dnsLink",
+          "PrincipalId": "3e98f5f4-3e7a-48bc-86cd-ac615efa40ce",
+          "adminRoleDefinitionResourceId": "/providers/Microsoft.Authorization/roleDefinitions/00482a5a-887f-4fb3-b363-3b7fe8e74483",
+          "contributorRoleDefinitionResourceId": "/providers/Microsoft.Authorization/roleDefinitions/f25e0fa2-a7c8-4377-a976-54943a77a395"
+      }
+    }
+    
+   
+  }
+}

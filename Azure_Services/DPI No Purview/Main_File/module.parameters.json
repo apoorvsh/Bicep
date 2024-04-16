@@ -1,0 +1,122 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "newOrExisting": {
+      "value": "New"
+    },
+    "existingNetworkResourceGroupName": {
+      "value": "network-rg"
+    },
+    "projectCode": {
+      "value": "CT"
+    },
+    "environment": {
+      "value": "tst"
+    },
+    "combineResourceTags": {
+      "value": {
+        "Environment": "Celebal",
+        "Project Code": "Test",
+        "Owner": "CT",
+        "Managed By": "Bicep"
+      }
+    },
+    "existingVnetName": {
+      "value": "vnet-01"
+    },
+    "vnetAddressSpace": {
+      "value": "10.0.0.0/16"
+    },
+    "dataSubnetAddressPrefix": {
+      "value": "10.0.2.0/24"
+    },
+    "networkAccessApproach": {
+      "value": "Private"
+    },
+    "allowPulicAccessFromSelectedNetwork": {
+      "value": true
+    },
+    "networkArchitectureApproach": {
+      "value": "Hub & Spoke"
+    },
+    "existingBlobPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+    },
+    "existingDfsPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net"
+    },
+    "existingTablePrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.table.core.windows.net"
+    },
+    "existingFilePrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net"
+    },
+    "existingQueuePrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net"
+    },
+    "vmUserName": {
+      "value": "adminuser"
+    },
+    "vmPassword": {
+      "value": "password@123"
+    },
+    "sqlUserName": {
+      "value": "adminuser"
+    },
+    "sqlPassword": {
+      "value": "password@123"
+    },
+    "existingKeyVaultPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net"
+    },
+    "existingDataFactoryPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net"
+    },
+    "existingPortalAdfPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com"
+    },
+    "sqlAdminUser": {
+      "value": "apoorv.sharma@celebaltech.com"
+    },
+    "sqlAdminSID": {
+      "value": "dd0ffd23-7436-4a55-9d76-6f79e850723e"
+    },
+    "sqlDatabasePerformanceModel": {
+      "value": "Basic"
+    },
+    "requestedBackupStorageRedundancySqlServer": {
+      "value": "Local"
+    },
+    "existingSqlServerPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.database.windows.net"
+    },
+    "dedicatedPoolSkuCapacity": {
+      "value": "DW100c"
+    },
+    "sparkVersion": {
+      "value": "3.3"
+    },
+    "sparkNodeSizeFamily": {
+      "value": "MemoryOptimized"
+    },
+    "sparkNodeSize": {
+      "value": "Small"
+    },
+    "synapseWSAdminUser": {
+      "value": "apoorv.sharma@celebaltech.com"
+    },
+    "synapseWSAdminSID": {
+      "value": "dd0ffd23-7436-4a55-9d76-6f79e850723e"
+    },
+    "existingSynapseDevPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.dev.azuresynapse.net"
+    },
+    "existingSynapseSqlPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net"
+    },
+    "existingSynapseLinkHubPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.azuresynapse.net"
+    }
+  }
+}

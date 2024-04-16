@@ -1,0 +1,15 @@
+using './frontdoor.bicep'
+
+param storageAccountName = 'hemangblob'
+param storageAccountSku = 'Standard_RAGRS'
+param location = 'centralindia'
+param kind = 'StorageV2'
+param accessTier = 'Hot'
+param frontDoorProfileName = 'hemang${uniqueString('frontdoor')}'
+param frontDoorSkuName = 'Standard_AzureFrontDoor'
+param frontDoorEndpointName = 'fdhemangendpoint'
+param frontDoorOriginGroupName = 'hemang${frontDoorOriginName}'
+param frontDoorOriginName = 'frontdoororigin'
+param wafPolicyName = 'fdwafpolicy'
+param frontDoorRouteName = 'fdroutes'
+

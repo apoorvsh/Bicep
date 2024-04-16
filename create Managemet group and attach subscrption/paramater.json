@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "mgName": {
+      "value": [
+        {
+          "name": "Workload-mg01",
+          "displayName": "This is the Wokload Management Group",
+          "subscriptionId": "367722a2-667e-40e3-ba4b-1078993dddf3"
+        },
+        {
+          "name": "Network-mg01",
+          "displayName": "This is the Network Management Group",
+          "subscriptionId": "0bf5c213-7ae4-4a4b-8a14-6b4a12300ae7"
+        }
+      ]
+    }
+  }
+}

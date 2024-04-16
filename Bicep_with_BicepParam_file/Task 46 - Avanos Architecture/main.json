@@ -1,0 +1,1143 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.22.6.54827",
+      "templateHash": "1203815034932143636"
+    }
+  },
+  "parameters": {
+    "values": {
+      "type": "object",
+      "metadata": {
+        "description": "Vnet/Subnet Parameters"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2023-07-01",
+      "name": "[parameters('values').rgNames[0]]",
+      "location": "[parameters('values').location]"
+    },
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2023-07-01",
+      "name": "[parameters('values').rgNames[1]]",
+      "location": "[parameters('values').hublocation]",
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').vnetSubModuleName]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "vnetvalues": {
+            "value": "[parameters('values')]"
+          },
+          "nsgid": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').nsgModule), '2022-09-01').outputs.devnsgid.value]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "411539021733491393"
+            }
+          },
+          "parameters": {
+            "vnetvalues": {
+              "type": "object"
+            },
+            "nsgid": {
+              "type": "string"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Network/virtualNetworks",
+              "apiVersion": "2023-05-01",
+              "name": "[parameters('vnetvalues').name]",
+              "location": "[parameters('vnetvalues').location]",
+              "properties": {
+                "addressSpace": {
+                  "addressPrefixes": [
+                    "[parameters('vnetvalues').addressprefix]"
+                  ]
+                }
+              }
+            },
+            {
+              "copy": {
+                "name": "subnet",
+                "count": "[length(range(0, parameters('vnetvalues').count))]",
+                "mode": "serial",
+                "batchSize": 1
+              },
+              "type": "Microsoft.Network/virtualNetworks/subnets",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}', parameters('vnetvalues').name, parameters('vnetvalues').subnetname[range(0, parameters('vnetvalues').count)[copyIndex()]])]",
+              "properties": {
+                "addressPrefix": "[parameters('vnetvalues').subnetprefix[range(0, parameters('vnetvalues').count)[copyIndex()]]]",
+                "networkSecurityGroup": "[if(equals(range(0, parameters('vnetvalues').count)[copyIndex()], 2), createObject('id', parameters('nsgid')), null())]",
+                "delegations": "[if(equals(range(0, parameters('vnetvalues').count)[copyIndex()], 1), createArray(createObject('name', parameters('vnetvalues').delegationName, 'properties', createObject('servicename', parameters('vnetvalues').serviceName))), null())]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetvalues').name)]"
+              ]
+            }
+          ],
+          "outputs": {
+            "devvnet": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetvalues').name)]"
+            },
+            "devsubnet": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetvalues').name, parameters('vnetvalues').subnetname[range(0, parameters('vnetvalues').count)[0]])]"
+            },
+            "deleSubnet": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetvalues').name, parameters('vnetvalues').subnetname[range(0, parameters('vnetvalues').count)[1]])]"
+            },
+            "vmSubnet": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetvalues').name, parameters('vnetvalues').subnetname[range(0, parameters('vnetvalues').count)[2]])]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').nsgModule)]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').hubModuleName]",
+      "resourceGroup": "[parameters('values').rgNames[1]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "1033052637174265677"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Network/virtualNetworks",
+              "apiVersion": "2023-05-01",
+              "name": "[parameters('values').hubVnetName]",
+              "location": "[parameters('values').hublocation]",
+              "properties": {
+                "addressSpace": {
+                  "addressPrefixes": [
+                    "[parameters('values').vngAddressPrefix]"
+                  ]
+                }
+              }
+            },
+            {
+              "type": "Microsoft.Network/virtualNetworks/subnets",
+              "apiVersion": "2023-05-01",
+              "name": "[format('{0}/{1}', parameters('values').hubVnetName, parameters('values').vngSubnetName)]",
+              "properties": {
+                "addressPrefix": "[parameters('values').vngSubnetPrefix]"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('values').hubVnetName)]"
+              ]
+            }
+          ],
+          "outputs": {
+            "hubVnetId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/virtualNetworks', parameters('values').hubVnetName)]"
+            },
+            "hubSubnetId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('values').hubVnetName, parameters('values').vngSubnetName)]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]",
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[1])]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').vnetSubModuleName)]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').nsgModule]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "value": {
+            "value": "[parameters('values')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "5215729051584213864"
+            }
+          },
+          "parameters": {
+            "value": {
+              "type": "object"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Network/networkSecurityGroups",
+              "apiVersion": "2023-04-01",
+              "name": "[parameters('value').nsgName]",
+              "location": "[parameters('value').location]",
+              "properties": {
+                "securityRules": []
+              }
+            }
+          ],
+          "outputs": {
+            "devnsgid": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('value').nsgName)]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').publicModuleName]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "value": {
+            "value": "[parameters('values')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "14624604933315956521"
+            }
+          },
+          "parameters": {
+            "value": {
+              "type": "object"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Network/publicIPAddresses",
+              "apiVersion": "2023-04-01",
+              "name": "[parameters('value').publicIpName[0]]",
+              "location": "[parameters('value').location]",
+              "sku": {
+                "name": "[parameters('value').publicIpSku]"
+              },
+              "properties": {
+                "publicIPAllocationMethod": "[parameters('value').publicIPAllocationMethod]"
+              },
+              "zones": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
+          ],
+          "outputs": {
+            "publicipid": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('value').publicIpName[0])]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').hubpublicIpModuleName]",
+      "resourceGroup": "[parameters('values').rgNames[1]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "value": {
+            "value": "[parameters('values')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "11778225146151914957"
+            }
+          },
+          "parameters": {
+            "value": {
+              "type": "object"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Network/publicIPAddresses",
+              "apiVersion": "2023-04-01",
+              "name": "[parameters('value').publicIpName[1]]",
+              "location": "[parameters('value').hublocation]",
+              "sku": {
+                "name": "[parameters('value').publicIpSku]"
+              },
+              "properties": {
+                "publicIPAllocationMethod": "[parameters('value').publicIPAllocationMethod]"
+              },
+              "zones": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
+          ],
+          "outputs": {
+            "hubPublicIp": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('value').publicIpName[1])]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[1])]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').nicModule]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          },
+          "publicid": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').publicModuleName), '2022-09-01').outputs.publicipid.value]"
+          },
+          "subnetid": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').vnetSubModuleName), '2022-09-01').outputs.vmSubnet.value]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "1902922396316405406"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            },
+            "publicid": {
+              "type": "string"
+            },
+            "subnetid": {
+              "type": "string"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Network/networkInterfaces",
+              "apiVersion": "2023-04-01",
+              "name": "[parameters('values').nicName]",
+              "location": "[parameters('values').location]",
+              "properties": {
+                "ipConfigurations": [
+                  {
+                    "name": "ipconfig1",
+                    "properties": {
+                      "privateIPAllocationMethod": "Dynamic",
+                      "publicIPAddress": {
+                        "id": "[parameters('publicid')]"
+                      },
+                      "subnet": {
+                        "id": "[parameters('subnetid')]"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "outputs": {
+            "nicid": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/networkInterfaces', parameters('values').nicName)]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').publicModuleName)]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').vnetSubModuleName)]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').vmModule]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          },
+          "nicid": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').nicModule), '2022-09-01').outputs.nicid.value]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "12976549958420463599"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            },
+            "nicid": {
+              "type": "string"
+            }
+          },
+          "variables": {
+            "securityProfileJson": {
+              "uefiSettings": {
+                "secureBootEnabled": true,
+                "vTpmEnabled": true
+              },
+              "securityType": "[parameters('values').securityType]"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Compute/virtualMachines",
+              "apiVersion": "2023-03-01",
+              "name": "[parameters('values').vmName]",
+              "location": "[parameters('values').location]",
+              "properties": {
+                "hardwareProfile": {
+                  "vmSize": "[parameters('values').vmSize]"
+                },
+                "osProfile": {
+                  "computerName": "[parameters('values').vmName]",
+                  "adminUsername": "[parameters('values').adminUsername]",
+                  "adminPassword": "[parameters('values').adminPassword]"
+                },
+                "storageProfile": {
+                  "imageReference": {
+                    "publisher": "[parameters('values').publisher]",
+                    "offer": "WindowsServer",
+                    "sku": "[parameters('values').OSVersion]",
+                    "version": "latest"
+                  },
+                  "osDisk": {
+                    "createOption": "FromImage",
+                    "managedDisk": {
+                      "storageAccountType": "StandardSSD_LRS"
+                    }
+                  },
+                  "dataDisks": [
+                    {
+                      "diskSizeGB": 1023,
+                      "lun": 0,
+                      "createOption": "Empty"
+                    }
+                  ]
+                },
+                "networkProfile": {
+                  "networkInterfaces": [
+                    {
+                      "id": "[parameters('nicid')]"
+                    }
+                  ]
+                },
+                "securityProfile": "[if(equals(parameters('values').securityType, 'Standard'), variables('securityProfileJson'), null())]"
+              }
+            }
+          ],
+          "outputs": {
+            "vmid": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Compute/virtualMachines', parameters('values').vmName)]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').nicModule)]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').adfModulename]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "17280354131143768230"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.DataFactory/factories",
+              "apiVersion": "2018-06-01",
+              "name": "[parameters('values').adfName]",
+              "location": "[parameters('values').location]",
+              "identity": {
+                "type": "[parameters('values').type]"
+              },
+              "properties": {
+                "publicNetworkAccess": "[parameters('values').networkAccess]"
+              }
+            }
+          ],
+          "outputs": {
+            "adfId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.DataFactory/factories', parameters('values').adfName)]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').vaultModuleName]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "7514123235063284182"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.KeyVault/vaults",
+              "apiVersion": "2022-11-01",
+              "name": "[parameters('values').keyVaultName]",
+              "location": "[parameters('values').location]",
+              "properties": {
+                "enabledForDeployment": "[parameters('values').enabledForDeployment]",
+                "enabledForTemplateDeployment": "[parameters('values').enabledForTemplateDeployment]",
+                "enabledForDiskEncryption": "[parameters('values').enabledForDiskEncryption]",
+                "enableRbacAuthorization": "[parameters('values').enableRbacAuthorization]",
+                "tenantId": "[subscription().tenantId]",
+                "sku": {
+                  "family": "A",
+                  "name": "standard"
+                },
+                "publicNetworkAccess": "[parameters('values').publicNetworkAccess]",
+                "enableSoftDelete": "[parameters('values').enableSoftDelete]",
+                "softDeleteRetentionInDays": "[parameters('values').softDeleteRetentionInDays]",
+                "networkAcls": {
+                  "bypass": "AzureServices",
+                  "defaultAction": "Deny",
+                  "ipRules": [
+                    {
+                      "value": "192.84.190.235"
+                    }
+                  ]
+                },
+                "accessPolicies": [
+                  {
+                    "tenantId": "[subscription().tenantId]",
+                    "objectId": "[parameters('values').objectID]",
+                    "permissions": {
+                      "secrets": "[parameters('values').secrets]"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "outputs": {
+            "vaultId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.KeyVault/vaults', parameters('values').keyVaultName)]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').adlsModuleName]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "14933112840620864115"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Storage/storageAccounts",
+              "apiVersion": "2023-01-01",
+              "name": "[parameters('values').storageName]",
+              "location": "[parameters('values').location]",
+              "sku": {
+                "name": "[parameters('values').storageAccountSku]"
+              },
+              "kind": "[parameters('values').kind]",
+              "properties": {
+                "isHnsEnabled": true,
+                "accessTier": "[parameters('values').accessTier]",
+                "networkAcls": {
+                  "defaultAction": "Deny",
+                  "bypass": "AzureServices"
+                }
+              }
+            }
+          ],
+          "outputs": {
+            "adlsId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Storage/storageAccounts', parameters('values').storageName)]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').synapseModuleName]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "18344169290308286379"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Synapse/workspaces",
+              "apiVersion": "2019-06-01-preview",
+              "name": "[parameters('values').workSpaceName]",
+              "location": "[parameters('values').location]",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "properties": {
+                "defaultDataLakeStorage": {
+                  "accountUrl": "[format('https://{0}.dfs.core.windows.net', parameters('values').saName)]",
+                  "filesystem": "hemanglakefile"
+                },
+                "sqlAdministratorLogin": "[parameters('values').sqlAdministratorLogin]",
+                "sqlAdministratorLoginPassword": "[parameters('values').sqlAdministratorLoginPassword]"
+              }
+            }
+          ],
+          "outputs": {
+            "synapseId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Synapse/workspaces', parameters('values').workSpaceName)]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').endpointModuleName]",
+      "resourceGroup": "[parameters('values').rgNames[0]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          },
+          "dnsId": {
+            "value": [
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubDNSZoneModuleName), '2022-09-01').outputs.adfDns.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubDNSZoneModuleName), '2022-09-01').outputs.vaultDns.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubDNSZoneModuleName), '2022-09-01').outputs.blobDns.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubDNSZoneModuleName), '2022-09-01').outputs.adlsDns.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubDNSZoneModuleName), '2022-09-01').outputs.synapseDns.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubDNSZoneModuleName), '2022-09-01').outputs.synapseDevDns.value]"
+            ]
+          },
+          "linkServiceIds": {
+            "value": [
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').adfModulename), '2022-09-01').outputs.adfId.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').vaultModuleName), '2022-09-01').outputs.vaultId.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').adlsModuleName), '2022-09-01').outputs.adlsId.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').adlsModuleName), '2022-09-01').outputs.adlsId.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').synapseModuleName), '2022-09-01').outputs.synapseId.value]",
+              "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').synapseModuleName), '2022-09-01').outputs.synapseId.value]"
+            ]
+          },
+          "subnetId": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').vnetSubModuleName), '2022-09-01').outputs.devsubnet.value]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "7065130294553988871"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            },
+            "subnetId": {
+              "type": "string"
+            },
+            "linkServiceIds": {
+              "type": "array"
+            },
+            "dnsId": {
+              "type": "array"
+            }
+          },
+          "resources": [
+            {
+              "copy": {
+                "name": "privateEndpoint",
+                "count": "[length(range(0, parameters('values').endpointCount))]",
+                "mode": "serial",
+                "batchSize": 1
+              },
+              "type": "Microsoft.Network/privateEndpoints",
+              "apiVersion": "2022-09-01",
+              "name": "[parameters('values').privateEndpointName[range(0, parameters('values').endpointCount)[copyIndex()]]]",
+              "location": "[parameters('values').location]",
+              "properties": {
+                "subnet": {
+                  "id": "[parameters('subnetId')]"
+                },
+                "privateLinkServiceConnections": [
+                  {
+                    "name": "[parameters('values').linkServiceName[range(0, parameters('values').endpointCount)[copyIndex()]]]",
+                    "properties": {
+                      "privateLinkServiceId": "[parameters('linkServiceIds')[range(0, parameters('values').endpointCount)[copyIndex()]]]",
+                      "groupIds": [
+                        "[parameters('values').groupIds[range(0, parameters('values').endpointCount)[copyIndex()]]]"
+                      ]
+                    }
+                  }
+                ],
+                "customNetworkInterfaceName": "[parameters('values').nicInterfaceName[range(0, parameters('values').endpointCount)[copyIndex()]]]"
+              }
+            },
+            {
+              "copy": {
+                "name": "privateDnsZoneGroup",
+                "count": "[length(range(0, parameters('values').endpointCount))]",
+                "mode": "serial",
+                "batchSize": 1
+              },
+              "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+              "apiVersion": "2022-09-01",
+              "name": "[format('{0}/{1}', parameters('values').privateEndpointName[range(0, parameters('values').endpointCount)[range(0, parameters('values').endpointCount)[copyIndex()]]], parameters('values').privateDNSZoneGroupName[range(0, parameters('values').endpointCount)[copyIndex()]])]",
+              "properties": {
+                "privateDnsZoneConfigs": [
+                  {
+                    "name": "config1",
+                    "properties": {
+                      "privateDnsZoneId": "[parameters('dnsId')[range(0, parameters('values').endpointCount)[copyIndex()]]]"
+                    }
+                  }
+                ]
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/privateEndpoints', parameters('values').privateEndpointName[range(0, parameters('values').endpointCount)[range(0, parameters('values').endpointCount)[copyIndex()]]])]"
+              ]
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').adfModulename)]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').adlsModuleName)]",
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubDNSZoneModuleName)]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').vaultModuleName)]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').synapseModuleName)]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[0]), 'Microsoft.Resources/deployments', parameters('values').vnetSubModuleName)]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').hubDNSZoneModuleName]",
+      "resourceGroup": "[parameters('values').rgNames[1]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          },
+          "vnetId": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubModuleName), '2022-09-01').outputs.hubVnetId.value]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "16933354573528982544"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            },
+            "vnetId": {
+              "type": "string"
+            }
+          },
+          "resources": [
+            {
+              "copy": {
+                "name": "privateDnsZone",
+                "count": "[length(range(0, parameters('values').dnsCount))]",
+                "mode": "serial",
+                "batchSize": 1
+              },
+              "type": "Microsoft.Network/privateDnsZones",
+              "apiVersion": "2018-09-01",
+              "name": "[parameters('values').privateDNSZoneName[range(0, parameters('values').dnsCount)[copyIndex()]]]",
+              "location": "global"
+            },
+            {
+              "copy": {
+                "name": "privateDnsZoneLink",
+                "count": "[length(range(0, parameters('values').dnsCount))]",
+                "mode": "serial",
+                "batchSize": 1
+              },
+              "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+              "apiVersion": "2018-09-01",
+              "name": "[format('{0}/{1}', parameters('values').privateDNSZoneName[range(0, parameters('values').dnsCount)[range(0, parameters('values').dnsCount)[copyIndex()]]], parameters('values').privateDnsZoneLinkName[range(0, parameters('values').dnsCount)[copyIndex()]])]",
+              "location": "global",
+              "properties": {
+                "registrationEnabled": false,
+                "virtualNetwork": {
+                  "id": "[parameters('vnetId')]"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', parameters('values').privateDNSZoneName[range(0, parameters('values').dnsCount)[range(0, parameters('values').dnsCount)[copyIndex()]]])]"
+              ]
+            }
+          ],
+          "outputs": {
+            "adfDns": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/privateDnsZones', parameters('values').privateDNSZoneName[range(0, parameters('values').dnsCount)[0]])]"
+            },
+            "vaultDns": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/privateDnsZones', parameters('values').privateDNSZoneName[range(0, parameters('values').dnsCount)[1]])]"
+            },
+            "adlsDns": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/privateDnsZones', parameters('values').privateDNSZoneName[range(0, parameters('values').dnsCount)[2]])]"
+            },
+            "blobDns": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/privateDnsZones', parameters('values').privateDNSZoneName[range(0, parameters('values').dnsCount)[3]])]"
+            },
+            "synapseDns": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/privateDnsZones', parameters('values').privateDNSZoneName[range(0, parameters('values').dnsCount)[4]])]"
+            },
+            "synapseDevDns": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/privateDnsZones', parameters('values').privateDNSZoneName[range(0, parameters('values').dnsCount)[5]])]"
+            }
+          }
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[1])]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubModuleName)]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('values').vngmodulename]",
+      "resourceGroup": "[parameters('values').rgNames[1]]",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "values": {
+            "value": "[parameters('values')]"
+          },
+          "publicId": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubpublicIpModuleName), '2022-09-01').outputs.hubPublicIp.value]"
+          },
+          "subnetId": {
+            "value": "[reference(extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubModuleName), '2022-09-01').outputs.hubSubnetId.value]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.22.6.54827",
+              "templateHash": "10687479685263556064"
+            }
+          },
+          "parameters": {
+            "values": {
+              "type": "object"
+            },
+            "publicId": {
+              "type": "string"
+            },
+            "subnetId": {
+              "type": "string"
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Network/virtualNetworkGateways",
+              "apiVersion": "2023-05-01",
+              "name": "[parameters('values').vngname]",
+              "location": "[parameters('values').hublocation]",
+              "properties": {
+                "activeActive": "[parameters('values').disable]",
+                "gatewayType": "[parameters('values').gatewaytype]",
+                "enableBgp": false,
+                "ipConfigurations": [
+                  {
+                    "name": "ipconfig",
+                    "properties": {
+                      "privateIPAllocationMethod": "Dynamic",
+                      "publicIPAddress": {
+                        "id": "[parameters('publicId')]"
+                      },
+                      "subnet": {
+                        "id": "[parameters('subnetId')]"
+                      }
+                    }
+                  }
+                ],
+                "sku": {
+                  "name": "[parameters('values').tier]",
+                  "tier": "[parameters('values').tier]"
+                },
+                "vpnType": "[parameters('values').vpntype]",
+                "vpnGatewayGeneration": "[parameters('values').generation]"
+              }
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[0])]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubpublicIpModuleName)]",
+        "[subscriptionResourceId('Microsoft.Resources/resourceGroups', parameters('values').rgNames[1])]",
+        "[extensionResourceId(format('/subscriptions/{0}/resourceGroups/{1}', subscription().subscriptionId, parameters('values').rgNames[1]), 'Microsoft.Resources/deployments', parameters('values').hubModuleName)]"
+      ]
+    }
+  ]
+}

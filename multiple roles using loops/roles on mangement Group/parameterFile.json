@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "contributor_RoleAssignment": {
+      "value": [
+        {
+          "pricipalId": "262ffa88-98c6-40e2-b039-f9d5f4da2979",
+          "roleDefinationId": "b24988ac-6180-42a0-ab88-20f7382dd24c"
+        },
+        {
+          "pricipalId": "262ffa88-98c6-40e2-b039-f9d5f4da2979",
+          "roleDefinationId": "acdd72a7-3385-48ef-bd42-f606fba81ae7"
+        }
+      ]
+    }
+  }
+}

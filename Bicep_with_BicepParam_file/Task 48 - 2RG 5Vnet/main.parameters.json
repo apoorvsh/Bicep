@@ -1,0 +1,110 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "rgNames": {
+      "value": [
+        "RG1",
+        "RG2"
+      ]
+    },
+    "rg1ModuleName": {
+      "value": "rg1Module"
+    },
+    "addressPrefixRG1": {
+      "value": [
+        "10.0.0.0/16",
+        "10.1.0.0/16",
+        "10.2.0.0/16"
+      ]
+    },
+    "rg1Count": {
+      "value": 3
+    },
+    "location": {
+      "value": [
+        "eastus",
+        "centralindia"
+      ]
+    },
+    "subnetNameRG1": {
+      "value": [
+        "subnet1",
+        "subnet2",
+        "subnet3"
+      ]
+    },
+    "subnetPrefixRG1": {
+      "value": [
+        "10.0.0.0/18",
+        "10.1.0.0/18",
+        "10.2.0.0/18"
+      ]
+    },
+    "vnetNameRG1": {
+      "value": [
+        "vnet1",
+        "vnet2",
+        "vnet3"
+      ]
+    },
+   
+    "rg1RouteTableName": {
+      "value": [
+        "route1",
+        "route2",
+        "route3"
+      ]
+    },
+    "rg1NSGName": {
+      "value": [
+        "nsg1",
+        "nsg2",
+        "nsg3"
+      ]
+    },
+    "rg2ModuleName": {
+      "value": "rg2Module"
+    },
+    "addressPrefixRG2": {
+      "value": [
+        "10.3.0.0/16",
+        "10.4.0.0/16"
+      ]
+    },
+    "rg2Count": {
+      "value": 2
+    },
+    "subnetNameRG2": {
+      "value": [
+        "subnet1",
+        "subnet2"
+      ]
+    },
+    "subnetPrefixRG2": {
+      "value": [
+        "10.3.0.0/18",
+        "10.4.0.0/18"
+      ]
+    },
+    "vnetNameRG2": {
+      "value": [
+        "vnet1",
+        "vnet2"
+      ]
+    },
+  
+    "rg2RouteTableName": {
+      "value": [
+        "route1",
+        "route2"
+      ]
+    },
+    "rg2NSGName": {
+      "value": [
+        "nsg1",
+        "nsg2"
+      ]
+    }
+  }
+}

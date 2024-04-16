@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vnetName": {
+      "value": "Vnet"
+    },
+    "location": {
+      "value": "centralindia"
+    },
+    "addressPrefix": {
+      "value": "10.0.0.0/16"
+    },
+    "subnetName": {
+      "value": "subnet"
+    },
+    "subnetPrefix": {
+      "value": "10.0.0.0/18"
+    },
+    "storageAccountName": {
+      "value": "hemangnewstorage"
+    },
+    "storageAccountSku": {
+      "value": "Standard_LRS"
+    },
+    "kind": {
+      "value": "StorageV2"
+    },
+    "accessTier": {
+      "value": "Hot"
+    },
+    "endpointName": {
+      "value": "endpointStorage"
+    },
+    "linkServiceName": {
+      "value": "storageLink"
+    },
+    "groupId": {
+      "value": "dfs"
+    },
+    "nicName": {
+      "value": "hemangNic"
+    },
+    "defaultAction": {
+      "value": "Deny"
+    },
+    "bypass": {
+      "value": "AzureServices"
+    },
+    "privateDNSZoneName": {
+      "value": "privatelink.dfs.core.windows.net"
+    },
+    "dnsZoneLinkName": {
+      "value": "dnsZoneLink"
+    },
+    "dnsGroupName": {
+      "value": "dnsGroup"
+    },
+    "dnsZoneConfigName": {
+      "value": "config"
+    }   
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "StorageName": {
+      "value": "apoorv33004455"
+    },
+    "storageaccounttagName": {
+      "value": {
+        "tagA": {
+          "environment": "hubrgstorageaccount"
+        }
+      }
+    },
+    "kind": {
+      "value": "StorageV2"
+    },
+    "publicAccess": {
+      "value": "None"
+    },
+    "sku": {
+      "value": "Premium_LRS"
+    },
+    "containerName": {
+      "value": ["data", "images", "documents"]
+    }
+  }
+}

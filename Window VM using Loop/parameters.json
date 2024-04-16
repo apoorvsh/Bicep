@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "testuser"
+    },
+    "adminPassword": {
+      "value": "passsword@123"
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "vmName": {
+      "value": [
+        {
+          "name": "win-vm01"
+        },
+        {
+          "name": "win-vm02"
+        }
+      ]
+    },
+    "nicName": {
+      "value": [
+        {
+          "name": "nic01"
+        },
+        {
+          "name": "nic02"
+        }
+      ]
+    }
+  }
+}

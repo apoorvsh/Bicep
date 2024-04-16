@@ -1,0 +1,225 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "newOrExisting": {
+      "value": "New"
+    },
+    "existingNetworkResourceGroupName": {
+      "value": "network-rg"
+    },
+    "projectCode": {
+      "value": "CT"
+    },
+    "environment": {
+      "value": "sp"
+    },
+    "combineResourceTags": {
+      "value": {
+        "Environment": "Celebal",
+        "Project Code": "Test",
+        "Owner": "CT",
+        "Managed By": "Bicep"
+      }
+    },
+    "existingVnetName": {
+      "value": "vnet-01"
+    },
+    "vnetAddressSpace": {
+      "value": "10.0.0.0/16"
+    },
+    "webSubnetAddressPrefix": {
+      "value": "10.0.1.0/24"
+    },
+    "dataSubnetAddressPrefix": {
+      "value": "10.0.2.0/24"
+    },
+    "computeSubnetAddressPrefix": {
+      "value": "10.0.3.0/24"
+    },
+    "databricksHostSubnetAddressPrefix": {
+      "value": "10.0.4.0/24"
+    },
+    "databricksContainerSubentAddressPrefix": {
+      "value": "10.0.5.0/24"
+    },
+    "appSubnetAddressPrefix": {
+      "value": "10.0.6.0/24"
+    },
+    "nextHopIpAddress": {
+      "value": "0.0.0.0"
+    },
+    "storageAccountType": {
+      "value": "Storage"
+    },
+    "networkAccessApproach": {
+      "value": "Private"
+    },
+    "allowPulicAccessFromSelectedNetwork": {
+      "value": true
+    },
+    "networkArchitectureApproach": {
+      "value": "Federated"
+    },
+    "existingBlobPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net"
+    },
+    "existingDfsPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net"
+    },
+    "existingTablePrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.table.core.windows.net"
+    },
+    "existingFilePrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net"
+    },
+    "existingQueuePrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net"
+    },
+    "monitoringApproach": {
+      "value": "Decentralized"
+    },
+    "logAnalyticsPricingTier": {
+      "value": "PerGB2018"
+    },
+    "enableDiagnosticSetting": {
+      "value": true
+    },
+    "centralizedWorkspaceId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourcegroups/dns-rg/providers/microsoft.operationalinsights/workspaces/apoorv-log"
+    },
+    "retentionPolicyDays": {
+      "value": 360
+    },
+    "vmUserName": {
+      "value": "adminuser"
+    },
+    "vmPassword": {
+      "value": "password@123"
+    },
+    "sqlUserName": {
+      "value": "adminuser"
+    },
+    "sqlPassword": {
+      "value": "password@123"
+    },
+    "existingKeyVaultPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net"
+    },
+    "existingDatabricksPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.azuredatabricks.net"
+    },
+    "existingDataFactoryPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net"
+    },
+    "existingPortalAdfPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com"
+    },
+    "virtualMachineType": {
+      "value": "Linux"
+    },
+    "sqlAdminUser": {
+      "value": "apoorv.sharma@celebaltech.com"
+    },
+    "sqlAdminSID": {
+      "value": "dd0ffd23-7436-4a55-9d76-6f79e850723e"
+    },
+    "sqlDatabasePerformanceModel": {
+      "value": "Basic"
+    },
+    "requestedBackupStorageRedundancySqlServer": {
+      "value": "Local"
+    },
+    "existingSqlServerPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.database.windows.net"
+    },
+    "existingPviewAccountPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.purview.azure.com"
+    },
+    "existingPviewPortalPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.purviewstudio.azure.com"
+    },
+    "existingEventHubPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net"
+    },
+    "appServiceSkuVersion": {
+      "value": "PremiumV2"
+    },
+    "appServiceOsVersion": {
+      "value": "Window"
+    },
+    "logicAppType": {
+      "value": "Consumption"
+    },
+    "logicAppAppServiceSkuVersion": {
+      "value": "WS2"
+    },
+    "existingWebAppPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourcegroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net"
+    },
+    "dedicatedPoolSkuCapacity": {
+      "value": "DW100c"
+    },
+    "sparkVersion": {
+      "value": "3.3"
+    },
+    "sparkNodeSizeFamily": {
+      "value": "MemoryOptimized"
+    },
+    "sparkNodeSize": {
+      "value": "Small"
+    },
+    "synapseWSAdminUser": {
+      "value": "apoorv.sharma@celebaltech.com"
+    },
+    "synapseWSAdminSID": {
+      "value": "dd0ffd23-7436-4a55-9d76-6f79e850723e"
+    },
+    "existingSynapseDevPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.dev.azuresynapse.net"
+    },
+    "existingSynapseSqlPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net"
+    },
+    "existingSynapseLinkHubPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.azuresynapse.net"
+    },
+    "existingCognitiveServicePrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com"
+    },
+    "customVisionType": {
+      "value": "Prediction"
+    },
+    "cognitiveServiceRestore": {
+      "metadata": {
+        "description": "Cognitive Service is already deployed in azure once and want to recover the service with the same name so set Restore true or by default set it as false"
+      },
+      "value": false
+    },
+    "existingAutomationPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net"
+    },
+    "existingIotHubPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net"
+    },
+    "existingServiceBusPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net"
+    },
+    "existingContainerRegistryPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io"
+    },
+    "continerRegistrySku": {
+      "metadata": {
+        "description": "Container Registry Sku Private access (Recommended) is only available for Premium SKU."
+      },
+      "value": "Premium"
+    },
+    "existingMachineLearningPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms"
+    },
+    "existingNotebookPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.notebooks.azure.net"
+    }
+
+  }
+}

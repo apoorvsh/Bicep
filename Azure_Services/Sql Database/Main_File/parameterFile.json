@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectCode": {
+      "value": "CT"
+    },
+    "environment": {
+      "value": "tst"
+    },
+    "combineResourceTags": {
+      "value": {
+        "Environment": "Celebal",
+        "Project Code": "Test",
+        "Owner": "CT",
+        "Managed By": "Bicep"
+      }
+    },
+    "vnetAddressSpace": {
+      "value": "10.0.0.0/16"
+    },
+    "subnetAddressPrefix": {
+      "value": "10.0.1.0/24"
+    },
+    "networkAccessApproach": {
+      "value": "Private"
+    },
+    "networkArchitectureApproach": {
+      "value": "Federated"
+    },
+    "sqlAdminUser": {
+      "value": "apoorv.sharma@celebaltech.com"
+    },
+    "sqlAdminSID": {
+      "value": "dd0ffd23-7436-4a55-9d76-6f79e850723e"
+    },
+    "sqlDatabasePerformanceModel": {
+      "value": "Basic"
+    },
+    "requestedBackupStorageRedundancySqlServer": {
+      "value": "Local"
+    },
+    "existingSqlServerPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.database.windows.net"
+    },
+    "sqlUserName": {
+      "value": "testuser"
+    },
+    "sqlPassword": {
+      "value": "password@123"
+    }
+  }
+}

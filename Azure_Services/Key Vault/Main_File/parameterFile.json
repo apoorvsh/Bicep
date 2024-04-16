@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "projectCode": {
+      "value": "CT"
+    },
+    "environment": {
+      "value": "tst"
+    },
+    "combineResourceTags": {
+      "value": {
+        "Environment": "Celebal",
+        "Project Code": "Test",
+        "Owner": "CT",
+        "Managed By": "Bicep"
+      }
+    },
+    "vnetAddressSpace": {
+      "value": "10.0.0.0/16"
+    },
+    "subnetAddressPrefix": {
+      "value": "10.0.1.0/24"
+    },
+    "networkAccessApproach": {
+      "value": "Public"
+    },
+    "networkArchitectureApproach": {
+      "value": "Hub & Spoke"
+    },
+    "allowPulicAccessFromSelectedNetwork": {
+      "value": true
+    },
+    "vmUserName": {
+      "value": "adminuser"
+    },
+    "vmPassword": {
+      "value": "password@123"
+    },
+    "sqlUserName": {
+      "value": "adminuser"
+    },
+    "sqlPassword": {
+      "value": "password@123"
+    },
+    "existingKeyVaultPrivateDnsZoneId": {
+      "value": "/subscriptions/8a21611a-c5d3-4127-a0e2-be72ad32026d/resourceGroups/dns-rg/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net"
+    }
+  }
+}

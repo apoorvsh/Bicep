@@ -1,0 +1,13 @@
+using 'vmlinux.bicep'
+
+param adminPasswordOrKey = 'Hemang@12345'
+param adminUsername = 'biceplvm'
+param authenticationType = 'password'
+param location = 'East US'
+param networkSecurityGroupName = 'nsgname'
+param securityType = 'Standard'
+param subnetName = 'subnet'
+param ubuntuOSVersion = 'Ubuntu-2004'
+param virtualNetworkName = 'MYVNET'
+param vmName = 'biceplvm'
+param vmSize  = 'Standard_D2s_v3'
